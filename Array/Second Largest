@@ -1,0 +1,33 @@
+// link: https://practice.geeksforgeeks.org/problems/second-largest3735/1
+class Solution{
+public:	
+	// Function returns the second
+	// largest elements
+	int print2largest(int arr[], int n) {
+	    
+	   int mx = INT_MIN;
+        int mxx = INT_MIN;
+        for(int i = 0; i < n; i++)
+        {
+            if(mx <= arr[i])
+            {
+                mx = arr[i];
+            }
+        }
+       
+        for(int i = 0; i < n ; i++)
+        {
+            if (mxx <= arr[i] && arr[i] != mx)
+           {
+              mxx = arr[i];
+           }
+        }
+       
+        if(mxx < 1)
+        {
+            return -1;
+        }
+       
+      return mxx;
+
+}
