@@ -1,0 +1,25 @@
+//GeeksForGeeks Link: https://practice.geeksforgeeks.org/problems/reversal-algorithm5340/1
+class Solution{   
+public:
+    void leftRotate(int arr[], int n, int d) {
+        // code here
+        
+    //     if(k>n){
+	   //    k=(k%n);
+	   //}
+	   int ext[d];
+	   int l=0;
+	   for(int i=0;i<d;i++){
+	       ext[l++]=arr[i];
+	   }
+	   l=0;
+	   for(int i=d;i<n;i++){
+	       
+	       arr[l++]=arr[i];
+	   }
+	   l=0;
+	   for(int i=n-d;i<n;i++){
+	       arr[i]=ext[l++];
+	   }
+    }
+};
