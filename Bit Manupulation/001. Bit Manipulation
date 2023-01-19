@@ -1,0 +1,11 @@
+// GeeksForGeeks Link: https://practice.geeksforgeeks.org/problems/bit-manipulation-1666686020/1
+class solution{
+  public:
+    void bitManipulation(int num, int i) {
+        // your code here
+        i--;
+        cout << ((num & (1L << (i))) != 0) << " ";
+        cout << (num | (1L << (i))) << " ";
+        cout << (num & (~(1L << (i))));
+    }
+}
