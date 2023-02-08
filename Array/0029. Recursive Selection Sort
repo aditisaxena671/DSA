@@ -1,0 +1,27 @@
+#include<iostream>
+using namespace std;
+void selectionSort(int arr[],int start,int n){
+	//base case
+	if(start>=n-1){
+		return;
+	}
+	int s1=start;
+	for(int i=start;i<n;i++){
+		if(arr[i]<arr[s1]){
+			s1=i;
+		}
+		swap(arr[start],arr[s1]);
+	}
+	start++;
+	selectionSort(arr,start,n);
+}
+int main(){
+	int arr[6]={6,2,9,1,5,4};
+	int n=6;
+	int s=0;
+	selectionSort(arr,s,n);
+	for(int i=0;i<n;i++){
+		cout<<arr[i]<<" ";
+	}
+	return 0;
+}
