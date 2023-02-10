@@ -1,0 +1,36 @@
+//leetcode Link: https://leetcode.com/problems/roman-to-integer/
+class Solution {
+public:
+    int romanToInt(string s) {
+        map<char,int> roman;
+        roman['I']=1;
+        roman['V']=5;
+        roman['X']=10;
+        roman['L']=50;
+        roman['C']=100;
+        roman['D']=500;
+        roman['M']=1000;
+    int num=0;
+        for(int i=0;i<s.length();i++){
+            int F=roman[s[i]];
+            int S;
+            if(i+1 < s.length()){
+                S=roman[s[i+1]];
+                if(F<S){
+                    int k=S-F;
+                    num+=k;
+                    i++;
+                }
+                else{                
+                    num+=F;
+                }
+            }
+            else{
+                //last element
+                num+=F;
+            }
+            
+        }
+        return num;
+    }
+};
