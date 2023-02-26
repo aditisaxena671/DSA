@@ -1,0 +1,128 @@
+#include<iostream>
+using namespace std;
+class Node{
+	public:
+		int data;
+		Node* next;
+		Node* prev;
+		
+		Node(int data){
+			this->data =data;
+			this->next=NULL;
+			this->prev=NULL;
+		}
+		~Node(){
+			int value=this->data;
+			if(next!=NULL){
+				delete next;
+				next=NULL;
+			}
+			cout<<"memory freed for "<<value<<endl;
+		}
+};
+void insertAtHead(int data,Node* &head,Node* &tail){
+	//empty list
+	if(head==NULL){
+		Node* temp=new Node(data);
+		head=temp;
+		tail=head;
+	}
+	else{
+		Node* temp=new Node(data);
+		head->prev=temp;
+		temp->next=head;
+		head=temp;
+	}
+	
+}
+void insertAtTail(int data, Node* &head,Node* &tail){
+	//empty list
+	if(tail==NULL){
+		Node* temp=new Node(data);
+		head=temp;
+		tail=temp;
+	}
+	else{
+		Node* temp= new Node(data);
+		tail->next=temp;
+		temp->prev=tail;
+		tail=temp;
+	}
+}
+void insertAtPosition(int data, int pos, Node* &head, Node* &tail){
+	if(pos==1){
+		insertAtHead(data,head,tail);
+		return;
+	}
+	int cnt=1;
+	Node* temp=head;
+	while(cnt<pos-1){
+		temp=temp->next;
+		cnt++;
+	}
+	if(temp->next==NULL){
+		insertAtTail(data, head,tail);
+		return ;
+	}
+		Node* nodeToBeInserted= new Node(data);
+		nodeToBeInserted->prev=temp;
+		nodeToBeInserted->next=temp->next;
+		temp->next->prev=nodeToBeInserted;
+		temp->next=nodeToBeInserted;
+	
+}
+void deletion(Node* &head, Node* &tail,int pos){
+	if(pos==1){
+		Node* temp=head;
+		temp->next->prev=NULL;
+		head=temp->next;
+		temp->next=NULL;
+		delete temp;
+	}
+	else{
+		Node* curr=head;
+		Node* prev= NULL;
+		int cnt=1;
+		while(cnt<pos){
+			prev=curr;
+			curr=curr->next;
+			cnt++;
+		}
+		curr->prev=NULL;
+		prev->next=curr->next;
+		if(curr->next==NULL){
+			tail=prev;			
+		}
+		curr->next=NULL;
+		delete curr;
+		
+	}
+}
+void print(Node* &head ){
+	Node* temp=head;
+	while(temp!=NULL){
+		cout<<temp->data<<" ";
+		temp=temp->next;
+	}
+	cout<<endl;
+}
+int main(){
+//	Node* node1= new Node(10);
+//	Node* head= node1;
+//	Node* tail= node1;
+	Node* head= NULL;
+	Node* tail= NULL;
+	insertAtHead(12,head,tail);
+	insertAtHead(13,head,tail);
+	print(head);
+	insertAtTail(20,head,tail);
+	
+	insertAtTail(21,head,tail);
+	print(head);
+	insertAtPosition(1,3,head,tail);
+	print(head);
+	deletion(head,tail,5);
+	
+	print(head);
+	return 0;
+}
