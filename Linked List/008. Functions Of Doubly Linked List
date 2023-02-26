@@ -90,7 +90,7 @@ void deletion(Node* &head, Node* &tail,int pos){
 		}
 		curr->prev=NULL;
 		prev->next=curr->next;
-		if(curr->next==NULL){
+		if(curr->next!=NULL){
 			tail=prev;			
 		}
 		curr->next=NULL;
