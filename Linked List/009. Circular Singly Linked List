@@ -50,6 +50,9 @@ void deletion(int value,Node* &tail){
 	}else{
 		Node* prev=tail;
 		Node* curr=prev->next;
+		if(curr==prev){
+			tail=NULL;
+		}
 		while(curr->data!=value){
 			prev=curr;
 			curr=curr->next;
