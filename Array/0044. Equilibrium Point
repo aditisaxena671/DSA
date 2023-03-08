@@ -1,0 +1,35 @@
+//GeeksForGeeks Link: https://practice.geeksforgeeks.org/problems/equilibrium-point-1587115620/1
+class Solution{
+    public:
+    // Function to find equilibrium point in the array.
+    // a: input array
+    // n: size of array
+    int equilibriumPoint(long long a[], int n) {
+    
+        // Your code here
+        if(n==1){
+            return n;
+        }
+        else if(n==2){
+            return -1;
+        }
+        else{
+            long long sum[n];
+            int s=0;
+            for(int i=0;i<n;i++){
+                s+=a[i];
+                sum[i]=s;
+            }
+            for(int i=1;i<n-1;i++){
+                int leftSum=sum[i]-a[i];
+                int rigthSum=s-sum[i];
+                if(leftSum==rigthSum){
+                    return (i+1);
+                }
+            }    
+        }
+        return -1;
+        
+    }
+
+};
