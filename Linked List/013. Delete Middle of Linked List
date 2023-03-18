@@ -1,0 +1,26 @@
+//GeeksForGeeks Link: https://practice.geeksforgeeks.org/problems/delete-middle-of-linked-list/1
+int getLength(Node* head){
+        int len=0;
+        while(head!=NULL){
+            head=head->next;
+            len++;
+        }
+        return len;
+    }
+Node* deleteMid(Node* head)
+{
+    // Your Code Here
+    int length=getLength(head);
+        int cnt=0;
+        int ans=length/2;
+        Node* temp=head;
+        Node* prev=NULL;
+        while(cnt<ans){
+            prev=temp;
+            temp=temp->next;
+            cnt++;
+        }
+        prev->next=temp->next;
+        delete temp;
+        return head;
+}
