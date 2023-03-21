@@ -1,0 +1,18 @@
+//GeeksForGeeks Link: https://practice.geeksforgeeks.org/problems/7995e41d167d81f14f1d4194b29ef839f52d18ba/1
+class Solution{
+public:
+    int minimumTime(int N,int cur,vector<int> &pos,vector<int> &time){
+        int min1=INT_MAX;
+        for(int i=0;i<N;i++){
+            if(cur<=pos[i]){
+                int time1=((pos[i]-cur)*time[i]);
+                min1=min(min1,time1);
+            }
+            if(cur>pos[i]){
+                int time1=((cur-pos[i])*time[i]);
+                min1=min(min1,time1);
+            }
+        }
+        return min1;
+    }
+};
