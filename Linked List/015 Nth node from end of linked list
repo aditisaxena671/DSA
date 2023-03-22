@@ -1,0 +1,26 @@
+//GeeksForGeeks Link:https://practice.geeksforgeeks.org/problems/nth-node-from-end-of-linked-list/1
+int getLength(Node* temp){
+    int len=1;
+    while(temp!=NULL){
+        temp=temp->next;
+        len++;
+    }
+    return len;
+}
+int getNthFromLast(Node *head, int n)
+{
+       // Your code here
+       
+       Node* temp=head;
+       int length= getLength(temp);
+       
+       if(n>length-1)
+        return -1;
+       int neededLength= length-n-1;
+       temp=head;
+       while(neededLength){
+           temp=temp->next;
+           neededLength--;
+       }
+       return temp->data;
+}
