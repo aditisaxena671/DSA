@@ -1,0 +1,45 @@
+//GeeksForGeeks Link: https://practice.geeksforgeeks.org/problems/check-if-linked-list-is-pallindrome/1
+
+lass Solution{
+  public:
+  Node* reverse(Node* head){
+      Node* curr=head;
+      Node* prev=NULL;
+      Node* next1=NULL;
+      while(curr!=NULL){
+          next1=curr->next;
+          curr->next=prev;
+          prev=curr;
+          curr=next1;
+      }
+      return prev;
+  }
+  Node* getMiddle(Node* head){
+      Node* slow=head;
+      Node* fast=head->next->next;
+      while(fast!=NULL && fast->next!=NULL){
+          fast=fast->next->next;
+          slow=slow->next;
+      }
+      return slow;
+  }
+    //Function to check whether the list is palindrome.
+    bool isPalindrome(Node *head)
+    {
+        //Your code here
+        if(head->next==NULL)
+            return true;
+        Node* middle= getMiddle(head);
+        Node* temp=middle->next;
+        Node* head2= reverse(temp);
+        Node* head1=head;
+        while(head2!=NULL){
+            if(head2->data!=head1->data)
+                return false;
+            head1=head1->next;
+            head2=head2->next;
+        }
+        return true;
+        
+    }
+};
