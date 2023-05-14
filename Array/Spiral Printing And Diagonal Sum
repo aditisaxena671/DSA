@@ -1,0 +1,62 @@
+public class spiralPrinting {
+    public static void main(String args[]){
+        int matrix[][]={
+            {1,2,3,4},
+            {5,6,7,8},
+            {9,10,11,12},
+            {13,14,15,16}
+        };
+        //print(matrix);
+        sum(matrix);
+    }
+    public static void sum(int matrix[][]){
+        int n= matrix.length;
+        int sum=0;
+
+        // for(int i=0;i<n;i++){
+        //     for(int j=0;j<n;j++){
+        //         int nn=n-1;
+        //         if(i==j || (i+j)==nn){
+        //             sum+=matrix[i][j];
+        //         }
+        //     }
+        // }
+        
+
+        // optimised code
+        for(int i=0;i<n;i++){
+            //pd
+            sum+=matrix[i][i];
+            //sd
+            if(i!=n-1-i)
+                sum+=matrix[n-1-i][i];
+        }
+        System.out.println("Sum = "+sum);
+    }
+    public static void print(int matrix[][]){
+        int startRow=0;
+        int Startcol=0;
+        int endRow=matrix.length-1;
+        int endCol= matrix[0].length-1;
+
+        while(startRow<=endRow && Startcol<=endCol){
+            //top
+            for(int i=Startcol;i<=endCol;i++){
+                System.out.print(matrix[Startcol][i]+" ");
+            }
+            for(int i=startRow+1;i<=endRow;i++){
+                System.out.print(matrix[i][endRow]+" ");
+            }
+            for(int i=endCol-1;i>=Startcol;i--){
+                System.out.print(matrix[endRow][i]+" ");
+            }
+            for(int i= endRow-1;i>=startRow+1;i--){
+                System.out.print(matrix[i][startRow]+" ");
+            }
+            startRow++;
+            Startcol++;
+            endRow--;
+            endCol--;
+        }
+    }
+}
