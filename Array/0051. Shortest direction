@@ -1,0 +1,88 @@
+//GeeksForGeeks Link: https://practice.geeksforgeeks.org/problems/shortest-direction4201/1
+
+//Solution:
+
+//{ Driver Code Starts
+//Initial Template for Java
+
+import java.io.*;
+import java.util.*;
+
+class GFG
+{
+    public static void main(String args[])throws IOException
+    {
+        BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+        int t = Integer.parseInt(in.readLine());
+        while(t-- > 0)
+        {
+            String s = in.readLine();
+            
+            Solution ob = new Solution();
+            
+            System.out.println(ob.shortestPath(s));
+        }
+    }
+}
+// } Driver Code Ends
+
+
+//User function Template for Java
+
+class Solution
+{
+    String shortestPath (String S)
+    {
+        // your code here
+        int s=0;
+        int n=0;
+        int e=0;
+        int w=0;
+        for(int i=0;i<S.length();i++){
+            char str= S.charAt(i);
+            if(str=='S')
+                s++;
+            else if(str=='N')
+                n++;
+            else if(str=='E')
+                e++;
+            else
+                w++;
+        }
+        char[] arr= new char[S.length()];
+        int k=0;
+        if(s>=n){
+            s=s-n;
+            for(int i=0;i<s;i++){
+                arr[k]='S';
+                k++;
+            }
+        }
+        else{
+            n=n-s;
+            for(int i=0;i<n;i++){
+                arr[k]='N';
+                k++;
+            }
+        }
+        if(e>w){
+            e=e-w;
+            for(int i=0;i<e;i++){
+                arr[k]='E';
+                k++;
+            }
+        }
+        else{
+            w=w-e;
+            for(int i=0;i<w;i++){
+                arr[k]='W';
+                k++;
+            }
+        }
+        Arrays.sort(arr);
+        String A = String.valueOf(arr);
+        return A;
+        
+    }
+}
+
