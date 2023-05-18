@@ -31,7 +31,7 @@ class Array {
 		    System.out.println(obj.trappingWater(arr, n));
 		}
 	}
-}
+} 
 
 
 // } Driver Code Ends
