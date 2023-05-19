@@ -11,7 +11,7 @@ public:
             if(cur>pos[i]){
                 int time1=((cur-pos[i])*time[i]);
                 min1=min(min1,time1);
-            }
+            } 
         }
         return min1;
     }
