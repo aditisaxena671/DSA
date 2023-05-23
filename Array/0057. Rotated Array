@@ -1,0 +1,20 @@
+public class RotatedArray {
+    public static void main(String args[]){
+        int arr[]={6,7,8,9,1,2,3,4,5};
+        System.out.println(findPivot(arr));
+    }
+    public static int findPivot(int arr[]){int s=0;
+        int e=arr.length-1;
+        int mid=s+(e-s)/2;
+        while(s<=e){
+            if(arr[mid]>=arr[s]){
+                s=mid+1;
+            }
+            else{
+                e=mid;
+            }
+            mid=s+(e-s)/2;
+        }
+        return e;
+    }
+}
