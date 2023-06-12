@@ -1,0 +1,79 @@
+package linkedList;
+
+public class ZigZag {
+    public static class Node{
+        int data;
+        Node next;
+        Node(int data){
+            this.data=data;
+            this.next=null;
+        }
+    }
+    public static Node head;
+    public static Node tail;
+    public void addAtLast(int data){
+        Node newNode= new Node(data);
+        if(head==null){
+            head=tail=newNode;
+            return;
+        }
+        tail.next=newNode;
+        tail=newNode;
+    }
+    public static Node getMid(Node head){
+        Node slow=head;
+        Node fast=head.next;
+        while(fast!=null && fast.next!=null){
+            slow=slow.next;
+            fast=fast.next.next;
+        }
+        return slow;
+    }
+    public static void main(String args[]){
+        ZigZag ll= new ZigZag();
+        ll.addAtLast(1);
+        ll.addAtLast(2);
+        ll.addAtLast(3);
+        ll.addAtLast(4);
+        ll.addAtLast(5);
+        print(head);
+        zigzagPrinting();
+        print(head);
+    }
+    public static void zigzagPrinting(){
+        //find mid
+        Node mid=getMid(head);
+        //reverse
+        
+        Node prev=null;
+        Node curr=mid;
+        Node next=mid.next;
+        while(curr!=null){
+            next=curr.next;
+            curr.next=prev;
+            prev=curr;
+            curr=next;
+        }
+        //merge
+        Node left=head;
+        Node right=prev;
+        Node nextL,nextR;
+        while(left!=null && right !=null){
+            nextL=left.next;
+            left.next=right;
+            nextR=right.next;
+            right.next=nextL;
+
+            left=nextL;
+            right=nextR;
+        }
+    }
+    public static void print(Node head){
+        System.out.println("printing");
+        Node temp=head;
+        while(temp!=null){
+            System.out.println(temp.data);
+            temp=temp.next;
+        }
+    }
+}
