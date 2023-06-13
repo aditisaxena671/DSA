@@ -1,3 +1,5 @@
+//GeeksForGEeks Linl : https://practice.geeksforgeeks.org/problems/delete-n-nodes-after-m-nodes-of-a-linked-list/1
+
 package linkedList;
 
 public class DeleteMNodes {
@@ -66,5 +68,38 @@ public class DeleteMNodes {
         print(head);
         dll.deletAfterM(4, 2);
         print(head);
+    }
+}
+
+
+
+-----------------------------------------------Gfg solution ----------------------------------------------------------------------
+
+class Solution
+{
+    static void linkdelete(Node head, int M, int N)
+    {
+        // your code here
+        Node curr=head;
+        Node temp=null;
+        int count;
+        while(curr!=null){
+            for(count=1;count<M && curr!=null;count++){
+                if(curr!=null){
+                    curr=curr.next;
+                }
+            }
+            if(curr==null){
+                return;
+            }
+            temp=curr.next;
+            for(count=1;count<=N && temp!=null;count++){
+                if(temp!=null){
+                    temp=temp.next;
+                }
+            }
+            curr.next=temp;
+            curr=temp;
+        }
     }
 }
