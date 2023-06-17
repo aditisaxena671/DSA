@@ -1,0 +1,38 @@
+package stack;
+import java.util.*;
+
+public class CheckPalindromeLinkedList {
+    public static void main(String args[]){
+        LinkedList<Integer> list= new LinkedList<>();
+        list.addLast(1);
+        list.addLast(2);
+        list.addLast(3);
+        list.addLast(4);
+        list.addLast(3);
+        list.addLast(2);
+        list.addLast(1);
+        int flag=1;
+
+        Stack<Integer> s= new Stack<>();
+        
+        for(int num: list){
+            s.push(num);
+        }
+        for(int num: list){
+            if(num==s.peek()){
+                s.pop();
+                flag=1;
+            }else{
+                flag=0;
+                break;
+            }
+        }
+        if(flag==1){
+            System.out.println("palindrome");;
+        }
+        else{
+            System.out.println("Not a palindrome");
+        }
+
+    }
+}
