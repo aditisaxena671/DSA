@@ -1,0 +1,74 @@
+package graphs;
+import java.util.*;
+
+
+public class BarpartiteGraph {
+    public static class Edge{
+        int src;
+        int des;
+        Edge(int s, int d){
+            this.src=s;
+            this.des=d;
+        }
+    }
+    public static void create(ArrayList<Edge>[] graph){
+        for(int i=0;i<graph.length;i++){
+            graph[i]=new ArrayList<>();
+        }
+        //0- vertex
+        graph[0].add(new Edge(0,1));
+        graph[0].add(new Edge(0,3));
+
+        //1- vertex
+        graph[1].add(new Edge(1,0));
+        graph[1].add(new Edge(1,2));
+
+        //2- vertex
+        graph[2].add(new Edge(2,1));
+        graph[2].add(new Edge(2,3));
+
+        //3 - vertex
+        
+        graph[3].add(new Edge(3,2));
+        graph[3].add(new Edge(3,0));
+
+
+
+
+
+    }
+    public static boolean isBarpartite(ArrayList<Edge>[] graphs){
+        int col[]= new int[graphs.length];
+        Queue<Integer> q= new LinkedList<>();
+        for(int i=0;i<graphs.length;i++){
+            col[i]=-1;
+        }
+        for(int i=0;i<graphs.length;i++){
+            if(col[i]==-1){
+                q.add(i);
+                col[i]=0;
+                while(!q.isEmpty()){
+                    int curr= q.remove();
+                    for(int j=0;j<graphs[curr].size();j++){
+                        Edge e= graphs[curr].get(j);
+                        if(col[e.des]==-1){
+                            int newCol= curr==0?1:0;
+                            col[e.des]=newCol;
+                            q.add(e.des);
+                        }
+                        else if(col[e.des]==col[curr]){
+                            return false;
+                        }
+                    }
+                }
+            }
+        }
+        return true;
+
+    }
+    public static void main(String args[]){
+        ArrayList<Edge>[] graph= new ArrayList[7];
+        create(graph);
+        System.out.println(isBarpartite(graph));
+    }
+}
