@@ -1,0 +1,40 @@
+//GeeksForGeeks Link : https://practice.geeksforgeeks.org/problems/lowest-common-ancestor-in-a-bst/1
+
+class BST
+{   
+    //Function to find the lowest common ancestor in a BST. 
+    boolean getPath(Node root, int n, ArrayList<Node> path){
+        if(root==null){
+            return false;
+        }
+        path.add(root);
+        if(root.data==n){
+            return true;
+        }
+        boolean leftAns=getPath(root.left, n, path);
+        boolean rightAns=getPath(root.right,n,path);
+        if(leftAns || rightAns){
+            return true;
+        }
+        path.remove(path.size()-1);
+        return false;
+        
+    }
+	Node LCA(Node root, int n1, int n2)
+	{
+        // code here.   
+        ArrayList<Node> path1= new ArrayList<>();
+        ArrayList<Node> path2= new ArrayList<>();
+        
+        getPath(root,n1,path1);
+        getPath(root,n2,path2);
+        int i=0;
+        for(;i<path1.size() && i< path2.size();i++){
+            if(path1.get(i).data != path2.get(i).data){
+                break;
+            }
+        }
+        return path1.get(i-1);
+    }
+    
+}
