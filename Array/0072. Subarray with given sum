@@ -1,0 +1,34 @@
+// GeeksForGeeks Link : https://practice.geeksforgeeks.org/problems/subarray-with-given-sum-1587115621/1
+
+class Solution
+{
+    //Function to find a continuous sub-array which adds up to a given number.
+    static ArrayList<Integer> subarraySum(int[] arr, int n, int s) 
+    {
+        // Your code here
+        int curr=0;
+        int start=0;
+        int end=-1;
+        ArrayList<Integer> ans= new ArrayList<>();
+        HashMap<Integer,Integer> hm= new HashMap<>();
+        
+        for(int i=0;i<n;i++){
+            curr+=arr[i];
+            if(curr==s){
+                end=i;
+                ans.add(1);
+                ans.add(i+1);
+                return ans;
+            }
+            if(hm.containsKey(curr-s)){
+                ans.add(hm.get(curr-s)+2);
+                ans.add(i+1);
+                return ans;
+            }
+            hm.put(curr,i);
+            
+        }
+        ans.add(-1);
+        return ans;
+    }
+}
