@@ -1,0 +1,27 @@
+//GeeksForGeeks Link : https://practice.geeksforgeeks.org/problems/even-and-odd/1
+
+class Solution {
+    static void reArrange(int[] arr, int N) {
+        // code here
+        ArrayList<Integer> even= new ArrayList<>();
+        ArrayList<Integer> odd= new ArrayList<>();
+        for(int i=0;i<N;i++){
+            if(arr[i]%2==0){
+                even.add(arr[i]);
+            }
+            else{
+                odd.add(arr[i]);
+            }
+        }
+        int k1=0;
+        int k2=0;
+        for(int i=0;i<N;i++){
+            if(i%2==0){
+                arr[i]=even.get(k1++);
+            }
+            else{
+                arr[i]=odd.get(k2++);
+            }
+        }
+    }
+};
