@@ -1,0 +1,33 @@
+// GeeksForGeeks Link: https://practice.geeksforgeeks.org/problems/array-of-alternate-ve-and-ve-nos1401/1
+
+class Solution {
+    void rearrange(int arr[], int n) {
+        // code here
+        ArrayList<Integer> pos= new ArrayList<>();
+	    ArrayList<Integer> neg= new ArrayList<>();
+	    
+	    for(int i=0;i<n;i++){
+	        if(arr[i]>=0){
+	            pos.add(arr[i]);
+	        }
+	        else{
+	            neg.add(arr[i]);
+	        }
+	    }
+	    int k=0,l=0,i=0;
+	    while(i<n && k<pos.size() && l<neg.size()){
+	        if(i%2==0){
+	            arr[i++]= pos.get(k++);
+	        }
+	        else{
+	            arr[i++]=neg.get(l++);
+	        }
+	    }
+	    while(k<pos.size()){
+	        arr[i++]=pos.get(k++);
+	    }
+	    while(l<neg.size()){
+	        arr[i++]=neg.get(l++);
+	    }
+    }
+}
