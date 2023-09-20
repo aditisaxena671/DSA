@@ -1,0 +1,25 @@
+// GeeksForGeeks Link: https://practice.geeksforgeeks.org/problems/array-subset-of-another-array2317/1
+
+public String isSubset( long a1[], long a2[], long n, long m) {
+        HashMap<Long,Long> map= new HashMap<>();
+        
+        for(long i=0;i<n;i++){
+                map.put(a1[(int)i],map.getOrDefault(a1[(int)i],0L)+1);
+            
+        }
+        for(long i=0;i<m;i++){
+            if(map.containsKey(a2[(int)i])){
+                if(map.get(a2[(int)i])>0){
+                    map.put(a2[(int)i],map.get(a2[(int)i])-1);
+                }
+                else{
+                    return "No";
+                }
+            }
+            else{
+                return "No";
+            }
+        }
+        return "Yes";
+        
+    }
