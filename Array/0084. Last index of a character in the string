@@ -1,0 +1,17 @@
+// GeeksForGeeks Link :https://practice.geeksforgeeks.org/problems/last-index-of-a-character-in-the-string4516/1
+
+class Solution{
+    int LastIndex(String s, char p){
+        // code here
+        HashMap<Character,Integer> map= new HashMap<>();
+        for(int i=0;i<s.length();i++){
+            char ch= s.charAt(i);
+            map.put(ch,i);
+        }
+        
+        if(map.containsKey(p)){
+            return map.get(p);
+        }
+        return -1;
+    }
+}
