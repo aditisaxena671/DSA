@@ -1,0 +1,29 @@
+// GeeksForGeeks Link : https://practice.geeksforgeeks.org/problems/reverse-words-in-a-given-string5459/1
+
+String reverseWords(String S)
+    { 
+        // code here 
+        Stack<String> st= new Stack<>();
+        StringBuilder ans= new StringBuilder();
+        for(int i=0;i<S.length();i++){
+            char ch= S.charAt(i);    
+            if(ch!='.'){
+                ans.append(ch);
+            }
+            else{
+                st.push(ans.toString());
+                ans.setLength(0);
+                
+            }
+            
+        }
+        st.push(ans.toString());
+        StringBuilder result=new StringBuilder();
+        while(!st.isEmpty()){
+            result.append(st.pop());
+            if(!st.isEmpty()){
+                result.append('.');
+            }
+        }
+        return result.toString();
+    }
