@@ -1,0 +1,21 @@
+// geeksForGeeks Link : https://practice.geeksforgeeks.org/problems/rightmost-different-bit-1587115621/1
+
+class Solution
+{
+    //Function to find the first position with different bits.
+    public static int posOfRightMostDiffBit(int m, int n)
+    {
+            
+        // Your code here
+        int xorResult=m^n;
+        int ans=1;
+        while(xorResult>0){
+            if((xorResult&1)==1){
+                return ans;
+            }
+            xorResult>>=1;
+            ans++;
+        }
+        return -1;    
+    }
+}
