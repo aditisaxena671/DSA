@@ -1,0 +1,21 @@
+// GeeksForGeeks Link : https://practice.geeksforgeeks.org/problems/pangram-checking-1587115620/1
+
+public static boolean checkPangram  (String str) {
+        // your code here
+        str=str.toLowerCase();
+        str= str.replaceAll("\\s","");
+        boolean aux[]= new boolean[26];
+        for(int i=0;i<str.length();i++){
+            char ch=str.charAt(i);
+            if (ch >= 'a' && ch <= 'z') {
+                aux[ch-'a']=true;
+            }
+            
+        }
+        for(int i=0;i<26;i++){
+            if(aux[i]==false){
+                return false;
+            }
+        }
+        return true;
+    }
