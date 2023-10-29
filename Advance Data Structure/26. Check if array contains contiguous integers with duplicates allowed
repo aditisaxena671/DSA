@@ -1,0 +1,24 @@
+class Solution{
+    // Function for finding maximum and value pair
+    public static boolean areElementsContiguous (int arr[], int n) {
+        //Complete the function
+        LinkedHashSet<Integer> set= new LinkedHashSet<Integer>();
+        for (int i = 0; i < arr.length; i++)
+            set.add(arr[i]);
+        ArrayList<Integer> aux= new ArrayList<>();
+        int j=0;
+        boolean flag=true;
+        for (Integer element : set) {
+            aux.add(element);
+        }
+        Collections.sort(aux);
+        for(int i=0;i<aux.size()-1;i++){
+            if(aux.get(i)+1==aux.get(i+1)){
+                flag=true;
+            }else{
+                return false;
+            }
+        }
+        return true;
+    }
+}
