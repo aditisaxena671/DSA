@@ -1,0 +1,44 @@
+//GeeksForGeeks Link: https://www.geeksforgeeks.org/problems/find-nk-th-node-in-linked-list/1
+
+Question:
+
+Given a singly linked list and a number k. Find the (n/k)th element, where n is the number of elements in the linked list. We need to consider ceil value in case of decimals.
+
+Examples:
+
+Input: LinkedList: 1->2->3->4->5->6 , k = 2
+Output: 3
+Explanation: 6/2th element is the 3rd(1-based indexing) element which is 3.
+
+Input: 2->7->9->3->5 , k = 3
+Output: 7
+Explanation: The 5/3rd element is the 2nd element as mentioned in the question that we need to consider ceil value in the case of decimals. So 2nd element is 7.
+
+Constraints: 
+1 <= number of nodes <= 104
+1 <= k <= number of nodes
+1 ≤ node->data ≤ 103
+
+Solution:
+
+class Solution {
+    public static int fractional_node(Node head, int k) {
+        // Your code here
+        int size=0;
+        Node temp= head;
+        while(temp!=null){
+            size++;
+            temp=temp.next;
+        }
+        int index = (int) Math.ceil((double) size / k);
+        temp=head;
+        while(temp!=null){
+            if(index==1){
+                return temp.data;
+            }
+            index--;
+            temp=temp.next;
+        }
+        return -1;
+    }
+}
