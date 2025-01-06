@@ -1,0 +1,34 @@
+class Solution {
+    public int[] minOperations(String boxes) {
+        int n=boxes.length();
+        int arr1[]= new int[n];
+        int arr2[]= new int[n];
+        int oneCount=0;
+        int total=0;
+        int zeroCount=0;
+        for(int i=n-1;i>=0;i--){
+            if(boxes.charAt(i)=='1'){
+                oneCount++;    
+            }
+            arr1[i]=total+oneCount;
+            total+=oneCount;
+        }
+        oneCount=0;
+        total=0;
+        for(int i=0;i<n;i++){
+            if(boxes.charAt(i)=='1'){
+                oneCount++;    
+            }
+            arr2[i]=total+oneCount;
+            total+=oneCount;
+        }
+        int result[]= new int[n];
+        for(int i=1;i<n;i++){
+            result[i-1]=arr1[i];
+        }
+        for(int i=1;i<n;i++){
+            result[i]+=arr2[i-1];
+        }
+        return result;
+    }
+}
