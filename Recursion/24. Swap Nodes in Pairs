@@ -1,0 +1,33 @@
+// Leetcode Link: https://leetcode.com/problems/swap-nodes-in-pairs/description/?envType=problem-list-v2&envId=recursion
+
+Question:
+Given a linked list, swap every two adjacent nodes and return its head. You must solve the problem without modifying the values in the list's nodes (i.e., only nodes themselves may be changed.)
+
+Solution:
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+    public ListNode swapPairs(ListNode head) {
+        return swap(head);
+    }
+    public ListNode swap(ListNode head){
+        ListNode temp=head;
+        if(temp==null || temp.next==null){
+            return head;
+        }
+        ListNode first=head;
+        ListNode second=head.next;
+        first.next=swap(second.next);
+        second.next=first;
+        return second;
+
+    }
+}
